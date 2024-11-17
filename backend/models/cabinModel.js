@@ -13,3 +13,4 @@ const cabinSchema = new mongoose.Schema({
 const Cabin = mongoose.model("Cabin", cabinSchema);
 
 export default Cabin;
+
