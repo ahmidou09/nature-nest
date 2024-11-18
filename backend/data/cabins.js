@@ -5,7 +5,7 @@ const cabins = [
     regularPrice: 100,
     discount: 10,
     description: "A cozy cabin in the woods with beautiful views.",
-    image: "cozy-cabin.jpg",
+    image: "https://picsum.photos/200/300?random=",
   },
   {
     name: "Mountain Cabin",
@@ -13,7 +13,7 @@ const cabins = [
     regularPrice: 150,
     discount: 15,
     description: "A cabin with a mountain view, perfect for family trips.",
-    image: "mountain-cabin.jpg",
+    image: "https://picsum.photos/200/300?random=",
   },
 ];
 

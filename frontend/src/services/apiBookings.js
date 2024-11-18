@@ -1,4 +1,4 @@
-import { getToday } from "../utils/helpers";
+/* import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
 export async function getBooking(id) {
@@ -95,3 +95,4 @@ export async function deleteBooking(id) {
   }
   return data;
 }
+ */

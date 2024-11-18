@@ -4,7 +4,10 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDB from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js";
+import cabinsRoutes from "./routes/cabinsRoutes.js";
+import guestsRoutes from "./routes/guestsRoutes.js";
+import bookingsRoutes from "./routes/bookingsRoutes.js";
+import settingsRoutes from "./routes/settingsRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
@@ -27,9 +30,11 @@ app.use(
   })
 );
 
-
-//app.use("/api/projects", projectRoutes);
-app.use("/api/users", userRoutes);
+// routes
+app.use("/api/cabins", cabinsRoutes);
+app.use("/api/guests", guestsRoutes);
+app.use("/api/bookings", bookingsRoutes);
+app.use("/api/settings", settingsRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
