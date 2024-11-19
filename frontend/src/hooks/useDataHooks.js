@@ -3,5 +3,5 @@ import { fetchCabins } from "../services/apiCabins";
 
 export const useCabins = () =>
   useQuery(["cabins"], fetchCabins, {
-    staleTime: 1000 * 60,
+    staleTime: 60 * 1000,
   });

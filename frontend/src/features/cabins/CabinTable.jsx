@@ -32,8 +32,6 @@ function CabinTable() {
   if (isLoading) return <Spinner />;
   if (error) return <div>Error loading cabins: {error.message}</div>;
 
-  console.log(cabins);
-
   return (
     <Table role="table">
       <TableHeader role="row">
