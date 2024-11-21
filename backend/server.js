@@ -35,7 +35,7 @@ app.use("/api/cabins", cabinsRoutes);
 app.use("/api/guests", guestsRoutes);
 app.use("/api/bookings", bookingsRoutes);
 app.use("/api/settings", settingsRoutes);
-
+/*
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running...");
   });
 }
-
+*/
 app.use(notFound);
 app.use(errorHandler);
 
