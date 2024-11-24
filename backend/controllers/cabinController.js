@@ -13,10 +13,24 @@ export const getCabins = async (req, res) => {
 // Create a new cabin
 export const createCabin = async (req, res) => {
   try {
-    const cabin = await Cabin.create(req.body);
+    const { name, maxCapacity, regularPrice, discount, description } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Image upload failed." });
+    }
+
+    const cabin = await Cabin.create({
+      name,
+      maxCapacity,
+      regularPrice,
+      discount,
+      description,
+      image: req.file.path,
+    });
+
     res.status(201).json(cabin);
   } catch (error) {
-    res.status(500).json({ message: "Error creating cabin", error });
+    res.status(500).json({ message: "Server error" });
   }
 };
 

@@ -60,7 +60,7 @@ const CabinRow = ({ cabin, index }) => {
 
   return (
     <TableRow role="row">
-      <Img src={image + index} />
+      <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>

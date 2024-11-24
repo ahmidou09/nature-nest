@@ -13,8 +13,15 @@ export const fetchCabins = async () => {
 };
 
 export const createCabin = async (cabin) => {
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
   try {
-    const { data } = await axios.post(`${API_URL}/cabins`, cabin);
+    console.log("cabin", cabin);
+    const { data } = await axios.post(`${API_URL}/cabins`, cabin, config);
     return data;
   } catch (error) {
     console.log(error);

@@ -30,7 +30,20 @@ function CreateCabinForm() {
     },
   });
   function onSubmit(data) {
-    mutate(data);
+    const formData = new FormData();
+
+    // Append all fields
+    for (const key in data) {
+      if (key === "image") {
+        formData.append(key, data[key][0]);
+      } else {
+        formData.append(key, data[key]);
+      }
+    }
+
+    console.log("formdata", formData.get("image"));
+
+    mutate(formData);
   }
 
   return (
