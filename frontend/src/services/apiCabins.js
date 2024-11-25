@@ -20,7 +20,6 @@ export const createCabin = async (cabin) => {
   };
 
   try {
-    console.log("cabin", cabin);
     const { data } = await axios.post(`${API_URL}/cabins`, cabin, config);
     return data;
   } catch (error) {

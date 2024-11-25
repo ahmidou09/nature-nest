@@ -9,9 +9,16 @@ import { createCabin } from "../../services/apiCabins";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-function CreateCabinForm() {
+function CreateCabinForm({ cabinToEdit = {} }) {
+  const { _id: editId, ...editValues } = cabinToEdit;
+  const isEditSession = Boolean(editId);
+
+  console.log("isEditSession", isEditSession);
+  console.log(cabinToEdit);
   const { register, handleSubmit, reset, getValues, onError, formState } =
-    useForm();
+    useForm({
+      defaultValues: isEditSession ? editValues : {},
+    });
 
   const { errors } = formState;
 
@@ -123,16 +130,21 @@ function CreateCabinForm() {
         <FileInput
           id="image"
           accept="image/*"
-          {...register("image", { required: "This field is required" })}
+          {...register("image", {
+            required: isEditSession ? false : "This field is required",
+          })}
         />
       </FormRow>
 
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset">
+          {" "}
           Cancel
         </Button>
-        <Button disabled={isCreating}>Add cabin</Button>
+        <Button disabled={isCreating}>
+          {isEditSession ? "Edit cabin" : "Create new cabin"}
+        </Button>
       </FormRow>
     </Form>
   );
