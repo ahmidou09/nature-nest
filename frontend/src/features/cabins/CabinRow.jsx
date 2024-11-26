@@ -71,14 +71,16 @@ const CabinRow = ({ cabin }) => {
         <Price>{formatCurrency(regularPrice)}</Price>
         {discount ? <Discount>{formatCurrency(discount)}</Discount> : ""}
         <div>
-          <button onClick={() => setShowForm(!showForm)}>Edit</button>
+          <button onClick={() => setShowForm(true)}>Edit</button>
           <button onClick={() => deleteCabin(cabin._id)} disabled={isDeleting}>
             Delete
           </button>
         </div>
       </TableRow>
 
-      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+      {showForm && (
+        <CreateCabinForm cabinToEdit={cabin} setShowForm={setShowForm} />
+      )}
     </>
   );
 };
