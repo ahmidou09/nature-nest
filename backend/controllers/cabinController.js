@@ -37,9 +37,25 @@ export const createCabin = async (req, res) => {
 // Update a cabin
 export const updateCabin = async (req, res) => {
   try {
-    const cabin = await Cabin.findByIdAndUpdate(req.params.id, req.body, {
+    const { name, maxCapacity, regularPrice, discount, description } = req.body;
+
+    const updateData = {
+      name,
+      maxCapacity,
+      regularPrice,
+      discount,
+      description,
+    };
+
+    // If a new image is uploaded, update the image path
+    if (req.file) {
+      updateData.image = req.file.path;
+    }
+
+    const cabin = await Cabin.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
     });
+
     res.status(200).json(cabin);
   } catch (error) {
     res.status(500).json({ message: "Error updating cabin", error });

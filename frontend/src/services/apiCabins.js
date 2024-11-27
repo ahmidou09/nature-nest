@@ -28,9 +28,14 @@ export const createCabin = async (cabin) => {
   }
 };
 
-export const updateCabin = async (cabin) => {
+export const updateCabin = async (cabin, id) => {
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
   try {
-    const { data } = await axios.put(`${API_URL}/cabins/${cabin._id}`, cabin);
+    const { data } = await axios.put(`${API_URL}/cabins/${id}`, cabin, config);
     return data;
   } catch (error) {
     console.log(error);

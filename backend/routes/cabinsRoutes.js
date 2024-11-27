@@ -12,6 +12,16 @@ const router = express.Router();
 
 router.route("/").get(getCabins).post(upload.single("image"), createCabin);
 
-router.route("/:id").put(updateCabin).delete(deleteCabin);
+router
+  .route("/:id")
+  .put(
+    (req, res, next) => {
+      console.log("req.file", req.file);
+      next();
+    },
+    upload.single("image"),
+    updateCabin
+  )
+  .delete(deleteCabin);
 
 export default router;
