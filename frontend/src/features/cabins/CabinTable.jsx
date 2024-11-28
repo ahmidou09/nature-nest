@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useCabins } from "../../hooks/useDataHooks";
+import { useCabins } from "./useCabins";
 import Spinner from "../../ui/Spinner";
 import React from "react";
 import CabinRow from "./CabinRow";
@@ -28,7 +28,7 @@ const TableHeader = styled.header`
 `;
 
 function CabinTable() {
-  const { data: cabins, isLoading, error } = useCabins();
+  const { cabins, isLoading, error } = useCabins();
   if (isLoading) return <Spinner />;
   if (error) return <div>Error loading cabins: {error.message}</div>;
 

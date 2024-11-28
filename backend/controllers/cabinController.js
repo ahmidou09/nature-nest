@@ -13,10 +13,11 @@ export const getCabins = async (req, res) => {
 // Create a new cabin
 export const createCabin = async (req, res) => {
   try {
-    const { name, maxCapacity, regularPrice, discount, description } = req.body;
+    const { name, maxCapacity, regularPrice, discount, description, image } =
+      req.body;
 
-    if (!req.file) {
-      return res.status(400).json({ message: "Image upload failed." });
+    if (!req.file && !image) {
+      return res.status(400).json({ message: "Image is required." });
     }
 
     const cabin = await Cabin.create({
@@ -25,7 +26,7 @@ export const createCabin = async (req, res) => {
       regularPrice,
       discount,
       description,
-      image: req.file.path,
+      image: req.file ? req.file.path : image,
     });
 
     res.status(201).json(cabin);
