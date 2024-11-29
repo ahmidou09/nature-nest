@@ -19,7 +19,9 @@ const importData = async () => {
     await Booking.deleteMany();
     await Cabin.deleteMany();
     await Guest.deleteMany();
+    await Settings.deleteMany();
 
+    const createdSettings = await Settings.create(settingsData);
     const createdGuest = await Guest.insertMany(guests);
     const createdCabin = await Cabin.insertMany(cabins);
 
@@ -36,6 +38,7 @@ const destroyData = async () => {
     await Booking.deleteMany();
     await Cabin.deleteMany();
     await Guest.deleteMany();
+    await Settings.deleteMany();
 
     console.log("Data Destroyed!".red.inverse);
     process.exit();
