@@ -8,7 +8,7 @@ import FormRow from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 import { useUpdateCabin } from "./useUpdateCabin";
 
-function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { _id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
@@ -30,7 +30,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
           {
             onSuccess: (data) => {
               reset();
-              setShowForm(false);
+              onCloseModal();
             },
           }
         )
@@ -42,14 +42,17 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
           {
             onSuccess: (data) => {
               reset();
-              setShowForm(false);
+              onCloseModal();
             },
           }
         );
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -133,7 +136,7 @@ function CreateCabinForm({ cabinToEdit = {}, setShowForm }) {
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button
-          onClick={() => setShowForm(false)}
+          onClick={() => onCloseModal()}
           variation="secondary"
           type={isEditSession ? "button" : "reset"}
         >
